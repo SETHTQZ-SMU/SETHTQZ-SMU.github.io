@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Weeknd | Fan Page</title>
+<style>
+  :root{
+    --bg: #0b0b0d;
+    --bg-alt: #151517;
+    --red: #d81e2c;
+    --red-glow: #ff2e3f;
+    --text: #f2f2f2;
+    --muted: #a9a9ad;
+    --card: #1a1a1d;
+  }
+
+  body.light-mode{
+    --bg: #f5f5f7;
+    --bg-alt: #ffffff;
+    --text: #16161a;
+    --muted: #55555a;
+    --card: #ffffff;
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', Arial, sans-serif;
+    transition: background 0.4s ease, color 0.4s ease;
+    scroll-behavior: smooth;
+  }
+
+  /* --- NAV --- */
+  nav{
+    position: sticky;
+    top:0;
+    z-index: 100;
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    padding: 18px 6vw;
+    background: rgba(11,11,13,0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  body.light-mode nav{ background: rgba(245,245,247,0.85); }
+
+  .logo{
+    font-weight: 800;
+    letter-spacing: 3px;
+    font-size: 1.3rem;
+    color: var(--red);
+  }
+
+  .nav-links{ display:flex; gap: 28px; }
+  .nav-links a{
+    color: var(--text);
+    text-decoration:none;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+  }
+  .nav-links a:hover{ opacity:1; color: var(--red); }
+
+  #themeToggle{
+    background: var(--red);
+    border:none;
+    color:white;
+    padding: 8px 16px;
+    border-radius: 30px;
+    cursor:pointer;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+  }
+
+  /* --- HERO --- */
+  header.hero{
+    text-align:center;
+    padding: 80px 6vw 60px;
+    background: radial-gradient(circle at 50% 20%, rgba(216,30,44,0.25), transparent 60%);
+  }
+
+  .portrait{
+    width: 220px;
+    height: 220px;
+    margin: 0 auto 30px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, var(--red), #4a0007);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow: 0 0 60px rgba(216,30,44,0.55);
+    border: 3px solid rgba(255,255,255,0.1);
+  }
+  .portrait svg{ width: 60%; height: 60%; }
+
+  h1.title{
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    letter-spacing: 6px;
+    font-weight: 900;
+  }
+
+  .subtitle{
+    color: var(--muted);
+    letter-spacing: 3px;
+    margin-top: 10px;
+    font-size: 1rem;
+    text-transform: uppercase;
+  }
+
+  .real-name{
+    margin-top: 6px;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* --- SECTIONS --- */
+  section{
+    padding: 60px 6vw;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  h2.section-title{
+    font-size: 2rem;
+    margin-bottom: 20px;
+    border-left: 4px solid var(--red);
+    padding-left: 14px;
+  }
+
+  .bio-text{
+    line-height: 1.8;
+    color: var(--text);
+    font-size: 1.05rem;
+  }
+
+  /* --- FACTS GRID --- */
+  .facts-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+  }
+  .fact-card{
+    background: var(--card);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 14px;
+    padding: 22px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .fact-card:hover{
+    transform: translateY(-6px);
+    box-shadow: 0 10px 30px rgba(216,30,44,0.25);
+  }
+  .fact-card .num{
+    color: var(--red);
+    font-weight: 800;
+    font-size: 1.4rem;
+  }
+
+  /* --- ERA GALLERY --- */
+  .gallery{
+    display:flex;
+    gap: 16px;
+    overflow-x:auto;
+    padding-bottom: 10px;
+    margin-top: 20px;
+  }
+  .era-card{
+    flex: 0 0 200px;
+    height: 260px;
+    border-radius: 16px;
+    padding: 20px;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    color:white;
+    font-weight:700;
+    letter-spacing: 1px;
+    position: relative;
+    overflow:hidden;
+    cursor:pointer;
+  }
+  .era-card small{ font-weight:400; opacity:0.85; display:block; margin-top:6px; }
+  .era-card:nth-child(1){ background: linear-gradient(160deg, #7a0d15, #1a0002); }
+  .era-card:nth-child(2){ background: linear-gradient(160deg, #b3001f, #2b0007); }
+  .era-card:nth-child(3){ background: linear-gradient(160deg, #ff2e3f, #3d000a); }
+  .era-card:nth-child(4){ background: linear-gradient(160deg, #8a8a8a, #1a1a1a); }
+  .era-card:nth-child(5){ background: linear-gradient(160deg, #d81e2c, #000); }
+
+  /* --- INTERACTIVE: FACT GENERATOR --- */
+  .interactive-box{
+    background: var(--card);
+    border-radius: 18px;
+    padding: 40px;
+    text-align:center;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  #factOutput{
+    min-height: 70px;
+    font-size: 1.2rem;
+    margin: 20px 0;
+    color: var(--red-glow);
+    font-weight: 600;
+  }
+  button.action-btn{
+    background: var(--red);
+    border:none;
+    color:white;
+    padding: 14px 32px;
+    font-size: 1rem;
+    border-radius: 40px;
+    cursor:pointer;
+    letter-spacing: 1px;
+    transition: transform 0.15s ease, background 0.2s;
+  }
+  button.action-btn:hover{ transform: scale(1.05); background: var(--red-glow); }
+
+  /* --- QUIZ --- */
+  .quiz-box{
+    background: var(--card);
+    border-radius: 18px;
+    padding: 30px;
+    margin-top: 20px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .quiz-question{ font-weight:700; margin-bottom: 16px; font-size: 1.1rem; }
+  .quiz-options{ display:grid; gap: 10px; }
+  .quiz-option{
+    background: var(--bg-alt);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 12px 16px;
+    border-radius: 10px;
+    cursor:pointer;
+    text-align:left;
+    color: var(--text);
+    font-size: 0.95rem;
+    transition: background 0.2s;
+  }
+  .quiz-option:hover{ background: rgba(216,30,44,0.15); }
+  .quiz-option.correct{ background: #1e5e2a !important; border-color:#2fbf4d; }
+  .quiz-option.wrong{ background: #5e1e1e !important; border-color:#bf2f2f; }
+  #quizProgress{ margin-top: 14px; color: var(--muted); font-size: 0.9rem; }
+  #quizResult{ margin-top:16px; font-weight:700; }
+
+  footer{
+    text-align:center;
+    padding: 40px;
+    color: var(--muted);
+    font-size: 0.85rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  @media (max-width:600px){
+    nav{ flex-direction:column; gap:14px; }
+    .nav-links{ gap:16px; flex-wrap:wrap; justify-content:center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">XO FAN PAGE</div>
+  <div class="nav-links">
+    <a href="#bio">Bio</a>
+    <a href="#facts">Facts</a>
+    <a href="#eras">Eras</a>
+    <a href="#generator">Fun Facts</a>
+    <a href="#quiz">Quiz</a>
+  </div>
+  <button id="themeToggle">🌙 Dark</button>
+</nav>
+
+<header class="hero">
+  <div class="portrait">
+    <svg viewBox="0 0 24 24" fill="white">
+      <path d="M12 12c2.7 0 4.9-2.2 4.9-4.9S14.7 2.2 12 2.2 7.1 4.4 7.1 7.1 9.3 12 12 12zm0 2.2c-3.3 0-9.8 1.6-9.8 4.9v2.7h19.6v-2.7c0-3.3-6.5-4.9-9.8-4.9z"/>
+    </svg>
+  </div>
+  <h1 class="title">THE WEEKND</h1>
+  <div class="subtitle">Singer · Songwriter · Producer</div>
+  <div class="real-name">Abel Makkonen Tesfaye</div>
+</header>
+
+<section id="bio">
+  <h2 class="section-title">Biography</h2>
+  <p class="bio-text">
+    The Weeknd is a Canadian singer, songwriter, and record producer known for his distinctive falsetto,
+    genre-blending sound, and cinematic visual style. Rising from an underground mixtape scene in Toronto
+    in the early 2010s, he built a devoted following before crossing into mainstream pop stardom with albums
+    that fused R&amp;B, synth-pop, and dark, atmospheric production. Over the years he has become one of the
+    best-selling and most streamed artists in the world, known for chart-topping singles, sold-out stadium tours,
+    and a signature aesthetic built around his "XO" brand.
+  </p>
+</section>
+
+<section id="facts">
+  <h2 class="section-title">Interesting Facts</h2>
+  <div class="facts-grid">
+    <div class="fact-card">
+      <div class="num">01</div>
+      Started his career anonymously, releasing mixtapes online without revealing his face for years.
+    </div>
+    <div class="fact-card">
+      <div class="num">02</div>
+      Known for his stage name coming from a life-changing weekend as a teenager in Toronto.
+    </div>
+    <div class="fact-card">
+      <div class="num">03</div>
+      Has performed at the Super Bowl Halftime Show, one of the most-watched musical events in the world.
+    </div>
+    <div class="fact-card">
+      <div class="num">04</div>
+      Frequently collaborates with the same small circle of producers to keep a consistent signature sound.
+    </div>
+    <div class="fact-card">
+      <div class="num">05</div>
+      Has won multiple Grammy Awards and numerous other major music industry honors.
+    </div>
+    <div class="fact-card">
+      <div class="num">06</div>
+      Has ventured into acting and television production alongside his music career.
+    </div>
+  </div>
+</section>
+
+<section id="eras">
+  <h2 class="section-title">Explore the Eras</h2>
+  <div class="gallery">
+    <div class="era-card"><div>House of Balloons<small>Underground mixtape era</small></div></div>
+    <div class="era-card"><div>Beauty Behind the Madness<small>Mainstream breakthrough</small></div></div>
+    <div class="era-card"><div>Starboy<small>Synth-pop reinvention</small></div></div>
+    <div class="era-card"><div>After Hours<small>Cinematic, neon-noir aesthetic</small></div></div>
+    <div class="era-card"><div>Dawn FM<small>Radio-concept era</small></div></div>
+  </div>
+</section>
+
+<section id="generator">
+  <h2 class="section-title">Fun Fact Generator</h2>
+  <div class="interactive-box">
+    <p>Click the button to reveal a random fun fact!</p>
+    <div id="factOutput">Press the button to begin ✨</div>
+    <button class="action-btn" id="factBtn">Generate Fun Fact</button>
+  </div>
+</section>
+
+<section id="quiz">
+  <h2 class="section-title">Fan Quiz</h2>
+  <div class="quiz-box">
+    <div class="quiz-question" id="quizQuestion"></div>
+    <div class="quiz-options" id="quizOptions"></div>
+    <div id="quizProgress"></div>
+    <div id="quizResult"></div>
+  </div>
+</section>
+
+<footer>
+  Fan-made tribute page · Not affiliated with the artist · Built with HTML, CSS &amp; JavaScript
+</footer>
+
+<script>
+  // ---------- THEME SWITCHER ----------
+  const themeBtn = document.getElementById('themeToggle');
+  themeBtn.addEventListener('click', () => {
+    document.body.classList.toggle('light-mode');
+    const isLight = document.body.classList.contains('light-mode');
+    themeBtn.textContent = isLight ? '☀️ Light' : '🌙 Dark';
+  });
+
+  // ---------- FUN FACT GENERATOR ----------
+  const facts = [
+    "His stage name is inspired by a pivotal weekend that changed the direction of his life.",
+    "He kept his identity hidden during his earliest releases, letting the mystery build hype.",
+    "He's collaborated with artists across pop, hip-hop, and electronic music.",
+    "His visual style often draws on neon lighting and retro-futuristic aesthetics.",
+    "He's headlined one of the biggest halftime shows in sports history.",
+    "His albums often follow loose narrative or conceptual themes from start to finish.",
+    "He has built a long-term creative partnership with a tight-knit production team.",
+    "His rise from independent mixtapes to global superstardom is considered a modern music industry case study."
+  ];
+
+  const factOutput = document.getElementById('factOutput');
+  const factBtn = document.getElementById('factBtn');
+  let lastFactIndex = -1;
+
+  factBtn.addEventListener('click', () => {
+    let index;
+    do {
+      index = Math.floor(Math.random() * facts.length);
+    } while (index === lastFactIndex && facts.length > 1);
+    lastFactIndex = index;
+
+    factOutput.style.opacity = 0;
+    setTimeout(() => {
+      factOutput.textContent = facts[index];
+      factOutput.style.opacity = 1;
+    }, 150);
+  });
+  factOutput.style.transition = 'opacity 0.15s ease';
+
+  // ---------- QUIZ ----------
+  const quizData = [
+    {
+      q: "What is The Weeknd's real name?",
+      options: ["Abel Tesfaye", "Aubrey Graham", "Marshall Mathers", "Shawn Carter"],
+      correct: 0
+    },
+    {
+      q: "Which country is The Weeknd from?",
+      options: ["United States", "Canada", "United Kingdom", "Jamaica"],
+      correct: 1
+    },
+    {
+      q: "What is the name of his fan community / brand often abbreviated as two letters?",
+      options: ["OG", "XO", "TW", "AB"],
+      correct: 1
+    },
+    {
+      q: "Which of these best describes his early rise to fame?",
+      options: [
+        "He won a TV talent show",
+        "He released anonymous mixtapes online",
+        "He was signed straight out of a major label audition",
+        "He started as a session drummer"
+      ],
+      correct: 1
+    },
+    {
+      q: "Which major event has he headlined, known for huge television viewership?",
+      options: ["The Grammys red carpet", "A Super Bowl Halftime Show", "The Olympics opening ceremony", "A royal wedding"],
+      correct: 1
+    }
+  ];
+
+  let currentQ = 0;
+  let score = 0;
+
+  const quizQuestion = document.getElementById('quizQuestion');
+  const quizOptions = document.getElementById('quizOptions');
+  const quizProgress = document.getElementById('quizProgress');
+  const quizResult = document.getElementById('quizResult');
+
+  function loadQuestion() {
+    quizResult.textContent = '';
+    if (currentQ >= quizData.length) {
+      quizQuestion.textContent = "Quiz complete!";
+      quizOptions.innerHTML = '';
+      quizProgress.textContent = '';
+      quizResult.textContent = `You scored ${score} out of ${quizData.length}. 🔥`;
+      const retryBtn = document.createElement('button');
+      retryBtn.textContent = "Try Again";
+      retryBtn.className = "action-btn";
+      retryBtn.style.marginTop = "16px";
+      retryBtn.addEventListener('click', () => {
+        currentQ = 0;
+        score = 0;
+        loadQuestion();
+      });
+      quizResult.appendChild(document.createElement('br'));
+      quizResult.appendChild(retryBtn);
+      return;
+    }
+
+    const data = quizData[currentQ];
+    quizQuestion.textContent = data.q;
+    quizOptions.innerHTML = '';
+    data.options.forEach((opt, i) => {
+      const btn = document.createElement('div');
+      btn.className = 'quiz-option';
+      btn.textContent = opt;
+      btn.addEventListener('click', () => selectAnswer(i, btn));
+      quizOptions.appendChild(btn);
+    });
+    quizProgress.textContent = `Question ${currentQ + 1} of ${quizData.length}`;
+  }
+
+  function selectAnswer(i, btn) {
+    const data = quizData[currentQ];
+    const allOptions = document.querySelectorAll('.quiz-option');
+    allOptions.forEach(o => o.style.pointerEvents = 'none');
+
+    if (i === data.correct) {
+      btn.classList.add('correct');
+      score++;
+    } else {
+      btn.classList.add('wrong');
+      allOptions[data.correct].classList.add('correct');
+    }
+
+    setTimeout(() => {
+      currentQ++;
+      loadQuestion();
+    }, 900);
+  }
+
+  loadQuestion();
+</script>
+
+</body>
+</html>
