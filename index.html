@@ -1,1 +1,235 @@
-<h1>Why is my page not displaying</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Me</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy: #1E3A8A;
+    --navy-deep: #14267A;
+    --paper: #FFF3D6;
+    --paper-line: #F2D98A;
+    --stamp: #D8262C;
+    --gold: #F4B400;
+  }
+
+  * { box-sizing: border-box; }
+
+  body{
+    margin:0;
+    background: var(--navy-deep);
+    color: var(--paper);
+    font-family: 'Work Sans', sans-serif;
+    line-height: 1.6;
+  }
+
+  .wrap{
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 72px 24px 96px;
+  }
+
+  .hero{
+    display:flex;
+    align-items:center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-bottom: 80px;
+  }
+
+  .avatar{
+    flex-shrink:0;
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    border: 3px solid var(--gold);
+    padding: 4px;
+  }
+
+  .avatar svg{
+    display:block;
+    width:100%;
+    height:100%;
+    border-radius:50%;
+  }
+
+  .hero-text h1{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    margin: 0 0 6px;
+    color: #fff;
+  }
+
+  .hero-text p{
+    margin:0;
+    color: var(--gold);
+    font-size: 1.05rem;
+    letter-spacing: 0.02em;
+  }
+
+  section{ margin-bottom: 72px; }
+
+  .section-title{
+    font-family:'Fraunces', serif;
+    font-size: 1.6rem;
+    font-weight:600;
+    color:#fff;
+    margin: 0 0 22px;
+    border-bottom: 1px solid rgba(244,239,227,0.15);
+    padding-bottom: 12px;
+  }
+
+  .postcard{
+    background: var(--paper);
+    border-radius: 4px;
+    padding: 14px;
+    box-shadow: 0 24px 50px -20px rgba(0,0,0,0.6);
+    position: relative;
+  }
+
+  .postcard::after{
+    content:"BCN";
+    position:absolute;
+    top: 26px;
+    right: 26px;
+    font-family:'Fraunces', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--stamp);
+    border: 1.5px solid var(--stamp);
+    border-radius: 50%;
+    width: 58px;
+    height: 58px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    transform: rotate(8deg);
+    opacity: 0.85;
+    pointer-events:none;
+  }
+
+  .video-frame{
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    background:#000;
+    overflow:hidden;
+    border-radius: 2px;
+  }
+
+  .video-frame iframe{
+    position:absolute;
+    top:0; left:0;
+    width:100%;
+    height:100%;
+    border:0;
+  }
+
+  .postcard-caption{
+    color: var(--navy);
+    font-size: 0.92rem;
+    padding: 14px 8px 4px;
+  }
+
+  .postcard-caption strong{
+    font-family:'Fraunces', serif;
+    font-style: italic;
+  }
+
+  .bio-box{
+    background: var(--paper);
+    color: var(--navy);
+    border-radius: 4px;
+    padding: 36px 40px;
+    box-shadow: 0 24px 50px -20px rgba(0,0,0,0.6);
+    position: relative;
+  }
+
+  .bio-box::before{
+    content:"";
+    position:absolute;
+    left: 26px;
+    top: 20px;
+    bottom: 20px;
+    width: 1px;
+    background: var(--paper-line);
+  }
+
+  .bio-box p{
+    margin: 0 0 16px;
+    padding-left: 40px;
+    font-size: 1.02rem;
+  }
+
+  .bio-box p:last-child{ margin-bottom:0; }
+
+  footer{
+    text-align:center;
+    color: rgba(244,239,227,0.4);
+    font-size: 0.85rem;
+    margin-top: 40px;
+  }
+
+  @media (max-width: 560px){
+    .hero{ flex-direction:column; text-align:center; }
+    .bio-box{ padding: 28px 22px; }
+    .bio-box p{ padding-left: 0; }
+    .bio-box::before{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="avatar">
+      <img src="Profile Picture.jpeg" alt="Seth" style="width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;">
+      <!-- This is Seth's photo. To change it later, replace Profile Picture.jpeg
+           (in the same folder as this file) with a new image of the same name,
+           or update the src above. -->
+    </div>
+    <div class="hero-text">
+      <h1>Seth</h1>
+      <p>Wanderer &middot; Storyteller &middot; Always planning the next trip</p>
+    </div>
+  </div>
+
+  <!-- FAVORITE TRAVEL DESTINATION -->
+  <section>
+    <h2 class="section-title">My favorite place on earth</h2>
+    <div class="postcard">
+      <div class="video-frame">
+        <iframe
+          src="https://www.youtube.com/embed/cKWUZLXbJKk?autoplay=1&mute=1&loop=1&playlist=cKWUZLXbJKk&controls=1&rel=0"
+          title="Barcelona travel guide"
+          allow="autoplay; encrypted-media; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <p class="postcard-caption"><strong>Barcelona, Spain</strong> — Gaudí's rooftops, tapas till midnight, and the sea just a walk from the old town.</p>
+    </div>
+  </section>
+
+  <!-- BIOGRAPHY -->
+  <section>
+    <h2 class="section-title">A little about me</h2>
+    <div class="bio-box">
+      <p>Hi, I am Seth. I am a Singaporean Y3 student and I enjoy travelling a lot.</p>
+      <p>I have travelled to many countries over the last few days and always look forward to my next trip!</p>
+      <p>When I'm not travelling, I spend my time going out with my friends and playing video games.</p>
+    </div>
+  </section>
+
+  <footer>Made with care, for wandering minds.</footer>
+
+</div>
+
+</body>
+</html>
