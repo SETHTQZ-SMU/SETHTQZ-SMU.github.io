@@ -195,11 +195,14 @@
   <div class="hero">
     <div class="avatar">
       <img src="Profile Picture.jpeg" alt="Seth" style="width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;">
- 
+      <!-- This is Seth's photo. To change it later, replace Profile Picture.jpeg
+           (in the same folder as this file) with a new image of the same name,
+           or update the src above. -->
     </div>
     <div class="hero-text">
       <h1>Seth</h1>
       <p>Wanderer &middot; Storyteller &middot; Always planning the next trip</p>
+      <p id="greeting" class="mt-1 mb-0" style="color:#fff; font-size:0.95rem;"></p>
     </div>
   </div>
 
@@ -229,9 +232,44 @@
     </div>
   </section>
 
-  <footer>Thank you for visiting my website.</footer>
+  <footer>Made with care, for wandering minds. &middot; <span id="year"></span></footer>
+
+  <!-- Back to top button -->
+  <button id="backToTop" type="button"
+    style="display:none; position:fixed; bottom:24px; right:24px; width:48px; height:48px;
+           border-radius:50%; border:none; background:var(--gold); color:var(--navy);
+           font-size:1.2rem; box-shadow:0 8px 20px rgba(0,0,0,0.4); cursor:pointer; z-index:999;">
+    &uarr;
+  </button>
 
 </div>
+
+<script>
+  // 1. Time-based greeting
+  const greetingEl = document.getElementById('greeting');
+  const hour = new Date().getHours();
+  let greeting;
+  if (hour < 12) {
+    greeting = "Good morning! Thanks for stopping by.";
+  } else if (hour < 18) {
+    greeting = "Good afternoon! Thanks for stopping by.";
+  } else {
+    greeting = "Good evening! Thanks for stopping by.";
+  }
+  greetingEl.textContent = greeting;
+
+  // 2. Auto-updating footer year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // 3. Back-to-top button
+  const backToTopBtn = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    backToTopBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
+  });
+  backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
 
 </body>
 </html>
